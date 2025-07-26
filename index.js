@@ -1,13 +1,15 @@
 const express = require('express');
-const studentRouter = require('./routes/student.routes');
+const apiRouter = require('./routes/api.routes');
+const cors = require('cors');
 
-const PORT = process.env.port || 9000
+const PORT = process.env.port || 4000;
 
-const app = express()
-
-app.use(express.json())
-app.use('/api', studentRouter)
+const app = express();
+app.use(cors('http://localhost:4000/'));
+app.use(express.json());
+app.use('/api', apiRouter);
 
 app.listen(PORT, () => {
-    console.log(`Example app listening on port ${PORT}`)
-})  
+    console.log(`Example app listening on port ${PORT}`);
+});
+
